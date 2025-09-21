@@ -42,8 +42,7 @@ INSTALLED_APPS = [
     'core',
     'menu',
     'orders',
-    'customers',
-    'api',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +54,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True  # Para dev, ajuste para produção
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 ROOT_URLCONF = 'burguertown.urls'
 
