@@ -30,6 +30,18 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # Adicione aqui, antes de CommonMiddleware
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+# Confirme que essas configurações estão presentes
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,22 +50,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'corsheaders',
+    'corsheaders',  # Já está presente
     'core',
     'menu',
     'orders',
     'users',
 ]
 
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+CORS_ALLOW_ALL_ORIGINS = True  # Para desenvolvimento
+# Ou, para maior segurança, especifique o frontend:
+# CORS_ALLOWED_ORIGINS = ['http://localhost:5173']
 
 CORS_ALLOW_ALL_ORIGINS = True  # Para dev, ajuste para produção
 MEDIA_URL = '/media/'
