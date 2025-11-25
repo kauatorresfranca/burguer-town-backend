@@ -22,9 +22,10 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE, related_name="order_items")
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="itens")
     quantidade = models.PositiveIntegerField()
     preco_unitario = models.DecimalField(max_digits=10, decimal_places=2)
 
+    @property
     def total(self):
         return self.quantidade * self.preco_unitario
